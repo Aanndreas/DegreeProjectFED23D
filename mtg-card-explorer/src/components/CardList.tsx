@@ -10,7 +10,11 @@ interface CardData {
 	type_line: string;
 }
 
-const CardList: React.FC = () => {
+interface CardListProps {
+	searchTerm: string; //prop for search term
+}
+
+const CardList: React.FC<CardListProps> = ({ searchTerm }) => {
 	const [cards, setCards] = useState<CardData[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -25,7 +29,6 @@ const CardList: React.FC = () => {
 						Accept: "application/json",
 					},
 				});
-				console.log(response.data); // Debugging API-response
 				setCards(response.data.data.slice(0, 20)); // Limit to 20 cards during development
 			} catch (err) {
 				console.error(err);
@@ -39,12 +42,17 @@ const CardList: React.FC = () => {
 		return () => clearTimeout(timeout);
 	}, []);
 
+	const filteredCards = cards.filter(
+		(card) =>
+			card.name && card.name.toLowerCase().includes(searchTerm.toLowerCase())
+	);
+
 	if (loading) return <p>Loading cards...</p>;
 	if (error) return <p>{error}</p>;
 
 	return (
 		<div className="card-grid">
-			{cards.map((card) => (
+			{filteredCards.map((card) => (
 				<Card key={card.id} card={card} />
 			))}
 		</div>
