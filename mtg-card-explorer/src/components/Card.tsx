@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface CardProps {
 	card: {
@@ -12,8 +12,19 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ card }) => {
+	const [isEnlarged, setIsEnlarged] = useState(false);
+
+	const toggleEnlarge = () => {
+		setIsEnlarged((prev) => !prev);
+	};
+
 	return (
-		<div className="card">
+		<div
+			className={`card ${isEnlarged ? "enlarged" : ""}`}
+			onClick={() => {
+				if (window.innerWidth <= 600) toggleEnlarge();
+			}}
+		>
 			<h3 className="card-name">{card.name}</h3>
 			<img
 				className="card-image"
