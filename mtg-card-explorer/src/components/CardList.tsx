@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
+import { filterCards } from "../helpers/filterCards";
 
-interface CardData {
+export interface CardData {
 	id: string;
 	name: string;
 	image_uris?: { normal: string };
 	mana_cost: string;
+	cmc: number; // Combined Mana Cost (e.g., 3)
 	type_line: string;
+	colors?: string[];
 }
 
 interface CardListProps {
-	searchTerm: string; //prop for search term
+	filters: {
+		searchTerm: string;
+		color: string;
+		type: string;
+		manaCost: string;
+	};
 }
 
-const CardList: React.FC<CardListProps> = ({ searchTerm }) => {
+const CardList: React.FC<CardListProps> = ({ filters }) => {
 	const [cards, setCards] = useState<CardData[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -29,7 +37,7 @@ const CardList: React.FC<CardListProps> = ({ searchTerm }) => {
 						Accept: "application/json",
 					},
 				});
-				setCards(response.data.data.slice(0, 20)); // Limit to 20 cards during development
+				setCards(response.data.data.slice(0, 30)); // Limit to 30 cards during development
 			} catch (err) {
 				console.error(err);
 				setError("Failed to fetch cards. Please try again later.");
@@ -42,10 +50,8 @@ const CardList: React.FC<CardListProps> = ({ searchTerm }) => {
 		return () => clearTimeout(timeout);
 	}, []);
 
-	const filteredCards = cards.filter(
-		(card) =>
-			card.name && card.name.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	// Filter cards using helper function
+	const filteredCards = filterCards(cards, filters);
 
 	if (loading) return <p>Loading cards...</p>;
 	if (error) return <p>{error}</p>;
