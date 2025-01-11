@@ -15,15 +15,28 @@ const Card: React.FC<CardProps> = ({ card }) => {
 	const [isEnlarged, setIsEnlarged] = useState(false);
 
 	const toggleEnlarge = () => {
-		setIsEnlarged((prev) => !prev);
+		setIsEnlarged(!isEnlarged);
+	};
+
+	const openInNewTab = () => {
+		const url = `/card/${card.id}`;
+		window.open(url, "_blank");
+	};
+
+	const handleClick = () => {
+		if (window.innerWidth <= 600) {
+			// Mobile: enlarge card
+			toggleEnlarge();
+		} else {
+			// Desktop: open in new tab
+			openInNewTab();
+		}
 	};
 
 	return (
 		<div
 			className={`card ${isEnlarged ? "enlarged" : ""}`}
-			onClick={() => {
-				if (window.innerWidth <= 600) toggleEnlarge();
-			}}
+			onClick={handleClick}
 		>
 			<h3 className="card-name">{card.name}</h3>
 			<img
@@ -40,6 +53,11 @@ const Card: React.FC<CardProps> = ({ card }) => {
 			<p className="card-text">
 				{card.oracle_text ? card.oracle_text : "No text available"}
 			</p>
+
+			{/* Overlay, to close enlarged card in mobile view */}
+			{isEnlarged && (
+				<div className="overlay" onClick={toggleEnlarge}></div>
+			)}
 		</div>
 	);
 };

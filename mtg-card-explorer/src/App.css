@@ -89,20 +89,34 @@ select:focus {
 }
 
 /* Hover effect for desktop */
-.card-image:hover {
-	transform: scale(1.5);
+@media (min-width: 601px) {
+	.card-image:hover {
+		transform: scale(1.5);
+	}
 }
 
 /* Enlarged card for mobile */
-.card.enlarged .card-image {
-	transform: scale(1.2);
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 1000;
-	background-color: #fff;
-	border-radius: 8px;
+@media (max-width: 600px) {
+	.card.enlarged {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(1.5);
+		z-index: 1000;
+		background: #f0f0f0;
+		border-radius: 8px;
+	}
+
+	/* Overlay to be able to click outside */
+	.overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: rgba(0, 0, 0, 0);
+		z-index: 999;
+	}
 }
 
 /* Card name */
