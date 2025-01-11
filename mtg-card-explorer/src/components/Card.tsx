@@ -34,31 +34,29 @@ const Card: React.FC<CardProps> = ({ card }) => {
 	};
 
 	return (
-		<div
-			className={`card ${isEnlarged ? "enlarged" : ""}`}
-			onClick={handleClick}
-		>
-			<h3 className="card-name">{card.name}</h3>
-			<img
-				className="card-image"
-				src={card.image_uris?.normal || "https://via.placeholder.com/200x278"}
-				alt={card.name}
-			/>
-			<p className="card-mana">
-				{card.mana_cost ? card.mana_cost : "No mana cost available"}
-			</p>
-			<p className="card-type">
-				{card.type_line ? card.type_line : "No type available"}
-			</p>
-			<p className="card-text">
-				{card.oracle_text ? card.oracle_text : "No text available"}
-			</p>
+		<>
+			{/* Overlay - outside card div to cover whole screen */}
+			{isEnlarged && <div className="overlay" onClick={toggleEnlarge}></div>}
 
-			{/* Overlay, to close enlarged card in mobile view */}
-			{isEnlarged && (
-				<div className="overlay" onClick={toggleEnlarge}></div>
-			)}
-		</div>
+			{/* Card that can be enlarged */}
+			<div className={`card ${isEnlarged ? "enlarged" : ""}`} onClick={handleClick}>
+				<h3 className="card-name">{card.name}</h3>
+				<img
+					className="card-image"
+					src={card.image_uris?.normal || "https://via.placeholder.com/200x278"}
+					alt={card.name}
+				/>
+				<p className="card-mana">
+					{card.mana_cost ? card.mana_cost : "No mana cost available"}
+				</p>
+				<p className="card-type">
+					{card.type_line ? card.type_line : "No type available"}
+				</p>
+				<p className="card-text">
+					{card.oracle_text ? card.oracle_text : "No text available"}
+				</p>
+			</div>
+		</>
 	);
 };
 

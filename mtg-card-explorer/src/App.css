@@ -139,7 +139,7 @@ select:focus {
 .card-mana {
 	font-size: 14px;
 	margin: 5px 0;
-	color: #555555;
+	color: #444444;
 }
 
 /* Card type */
@@ -147,7 +147,7 @@ select:focus {
 	font-size: 14px;
 	margin: 5px 0;
 	font-style: italic;
-	color: #777777;
+	color: #333;
 }
 
 /* Card text */
