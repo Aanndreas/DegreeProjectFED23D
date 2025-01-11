@@ -1,8 +1,9 @@
 import "./App.css";
 import { useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import CardList from "./components/CardList";
 import CardDetails from "./components/CardDetails";
+import FavoritesPage from "./components/FavoritesPage"; 
 import SearchBar from "./components/SearchBar";
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
 			element: (
 				<>
 					<h1>Gathering Magic in Magic: The Gathering</h1>
+					<button className="btn-favorites" onClick={() => window.location.href = "/favorites"}>
+                		View favorites
+            		</button>
 					<SearchBar onSearch={handleSearch} />
 					<div className="filters">
 						<select
@@ -40,10 +44,10 @@ function App() {
 							<option value="R">Red</option>
 							<option value="G">Green</option>
 						</select>
-						<select
-						 onChange={(e) => handleFilterChange("type", e.target.value)}
-						  value={filters.type}
-						  >
+						<select 
+						onChange={(e) => handleFilterChange("type", e.target.value)} 
+						value={filters.type}
+						>
 							<option value="">All Types</option>
 							<option value="Creature">Creature</option>
 							<option value="Instant">Instant</option>
@@ -52,10 +56,10 @@ function App() {
 							<option value="Enchantment">Enchantment</option>
 							<option value="Land">Land</option>
 						</select>
-						<select
-						onChange={(e) => handleFilterChange("manaCost", e.target.value)}
-						 value={filters.manaCost}
-						 >
+						<select 
+						onChange={(e) => handleFilterChange("manaCost", e.target.value)} 
+						value={filters.manaCost}
+						>
 							<option value="">All Mana Costs</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -81,6 +85,10 @@ function App() {
 		{
 			path: "/card/:id",
 			element: <CardDetails />,
+		},
+		{
+			path: "/favorites",
+			element: <FavoritesPage />,
 		},
 	]);
 

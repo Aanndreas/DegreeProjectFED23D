@@ -42,6 +42,9 @@ const CardDetails = () => {
 
 	return (
 		<div className="card-details">
+			<button className="btn-back-to-main" onClick={() => window.location.href = "/"}>
+            	Back to main page
+            </button>
 			<h2>{card.name}</h2>
 			<img src={card.image_uris?.normal} alt={card.name} />
 			<p><strong>Mana Cost:</strong> {card.mana_cost || "N/A"}</p>

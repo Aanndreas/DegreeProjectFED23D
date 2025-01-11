@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface CardProps {
 	card: {
@@ -12,34 +12,47 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ card }) => {
+	const [isFavorite, setIsFavorite] = useState(false);
 	const [isEnlarged, setIsEnlarged] = useState(false);
 
+	// Load favorites from localStorage
+	useEffect(() => {
+		const storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+		setIsFavorite(storedFavorites.some((fav: any) => fav.id === card.id));
+	}, [card.id]);
+
+	// Toggle favorite status
+	const toggleFavorite = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.stopPropagation(); // Prevent card click from triggering enlarge
+		let storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+		if (isFavorite) {
+			storedFavorites = storedFavorites.filter((fav: any) => fav.id !== card.id);
+		} else {
+			storedFavorites.push(card);
+		}
+
+		localStorage.setItem("favorites", JSON.stringify(storedFavorites));
+		setIsFavorite(!isFavorite);
+	};
+
 	const toggleEnlarge = () => {
-		setIsEnlarged(!isEnlarged);
-	};
-
-	const openInNewTab = () => {
-		const url = `/card/${card.id}`;
-		window.open(url, "_blank");
-	};
-
-	const handleClick = () => {
 		if (window.innerWidth <= 600) {
 			// Mobile: enlarge card
-			toggleEnlarge();
+			setIsEnlarged(!isEnlarged);
 		} else {
 			// Desktop: open in new tab
-			openInNewTab();
+			window.open(`/card/${card.id}`, "_blank");
 		}
 	};
 
 	return (
 		<>
-			{/* Overlay - outside card div to cover whole screen */}
-			{isEnlarged && <div className="overlay" onClick={toggleEnlarge}></div>}
+			{/* Overlay when enlarged - outside card div to cover whole screen */}
+			{isEnlarged && <div className="overlay" onClick={() => setIsEnlarged(false)}></div>}
 
 			{/* Card that can be enlarged */}
-			<div className={`card ${isEnlarged ? "enlarged" : ""}`} onClick={handleClick}>
+			<div className={`card ${isEnlarged ? "enlarged" : ""}`} onClick={toggleEnlarge}>
 				<h3 className="card-name">{card.name}</h3>
 				<img
 					className="card-image"
@@ -55,6 +68,13 @@ const Card: React.FC<CardProps> = ({ card }) => {
 				<p className="card-text">
 					{card.oracle_text ? card.oracle_text : "No text available"}
 				</p>
+				{/* Favorite button */}
+				<button
+					className={`favorite-button ${isFavorite ? "favorited" : ""}`}
+					onClick={toggleFavorite}
+				>
+					{isFavorite ? "★ Favorited" : "☆ Add to Favorites"}
+				</button>
 			</div>
 		</>
 	);
