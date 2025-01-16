@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import CardList from "./components/CardList";
-import CardDetails from "./components/CardDetails";
+import CardDetailsPage from "./components/CardDetailsPage";
 import FavoritesPage from "./components/FavoritesPage"; 
 import SearchBar from "./components/SearchBar";
 
@@ -84,7 +84,7 @@ function App() {
 		},
 		{
 			path: "/card/:id",
-			element: <CardDetails />,
+			element: <CardDetailsPage />,
 		},
 		{
 			path: "/favorites",
