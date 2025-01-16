@@ -1,177 +1,193 @@
 /* Base layout for the page */
 body {
-	margin: 0;
-	padding: 0;
-	overflow-x: hidden;
-	font-family: Arial, sans-serif;
-	background-color: #333;
-	color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #333;
+  color: #fff;
 }
 
 #root {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
-	text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 /* Search bar and dropdown container */
 .filters {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 16px;
-	margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 1rem;
 }
 
 /* Search bar styling */
 .search-bar {
-	width: 280px;
-	padding: 8px;
-	border: none;
-	border-radius: 8px;
-	font-size: 14px;
-	background-color: #444;
-	color: #fff;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	text-align: center;
-	margin-bottom: 1rem;
+  width: 280px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #444;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .search-bar:focus {
-	outline: 2px solid #ffcc00;
-	background-color: #555;
+  outline: 2px solid #ffcc00;
+  background-color: #555;
 }
 
 /* Dropdown styling */
 select {
-	width: 180px;
-	padding: 8px;
-	border: none;
-	border-radius: 8px;
-	font-size: 14px;
-	background-color: #444;
-	color: #fff;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
-	text-align: center;
+  width: 180px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #444;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
 }
 
 select:hover {
-	background-color: #555;
+  background-color: #555;
 }
 
 select:focus {
-	outline: 2px solid #ffcc00;
+  outline: 2px solid #ffcc00;
 }
 
 /* Card grid layout */
 .card-grid {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 16px;
-	justify-content: center;
-	padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
 }
 
 /* Card styles */
 .card {
-	flex: 1 1 calc(25% - 16px);
-	max-width: 200px;
-	text-align: center;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	padding: 8px;
-	background-color: #f0f0f0;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
-	transition: transform 0.2s ease-in-out;
+  flex: 1 1 calc(25% - 16px);
+  max-width: 200px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
 /* Hover effect for desktop */
 @media (min-width: 601px) {
-	.card-image:hover {
-		transform: scale(1.5);
-	}
+  .card-image:hover {
+    transform: scale(1.5);
+  }
 }
 
 /* Enlarged card for mobile */
 @media (max-width: 600px) {
-	.card.enlarged {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%) scale(1.5);
-		z-index: 1000;
-		background: #f0f0f0;
-		border-radius: 8px;
-	}
+  .card.enlarged {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 1000;
+    background: #f0f0f0;
+    border-radius: 8px;
+  }
 
-	/* Overlay to be able to click outside */
-	.overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		background: rgba(0, 0, 0, 0);
-		z-index: 999;
-	}
+  /* Overlay to be able to click outside */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 999;
+  }
+}
+
+.card-details-img-and-text {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 5rem;
+  padding-top: 3rem;
+  font-size: 18px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.card-details-page-info-text {
+  padding-left: 2rem;
 }
 
 /* Card name */
 .card-name {
-	font-size: 16px;
-	font-weight: bold;
-	margin-bottom: 10px;
-	color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000000;
 }
 
 /* Card image */
 .card-image {
-	width: 100%;
-	height: auto;
-	border-radius: 4px;
-	margin-bottom: 8px;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 8px;
 }
 
 /* Card mana cost */
 .card-mana {
-	font-size: 14px;
-	margin: 5px 0;
-	color: #444444;
+  font-size: 14px;
+  margin: 5px 0;
+  color: #444444;
 }
 
 /* Card type */
 .card-type {
-	font-size: 14px;
-	margin: 5px 0;
-	font-style: italic;
-	color: #333;
+  font-size: 14px;
+  margin: 5px 0;
+  font-style: italic;
+  color: #333;
 }
 
 /* Card text */
 .card-text {
-	font-size: 13px;
-	margin: 5px 0;
-	color: #444444;
+  font-size: 13px;
+  margin: 5px 0;
+  color: #444444;
 }
 
 /* Mobile adaptation */
 @media (max-width: 600px) {
-	.card {
-		flex: 1 1 100%;
-		max-width: 90%;
-		margin: 0 auto;
-	}
+  .card {
+    flex: 1 1 100%;
+    max-width: 90%;
+    margin: 0 auto;
+  }
 
-	.card-image:hover {
-		transform: none; /* Disable hover scaling on mobile */
-	}
+  .card-image:hover {
+    transform: none; /* Disable hover scaling on mobile */
+  }
 
-	.filters {
-		flex-direction: column;
-		gap: 8px;
-		align-items: center;
-	}
+  .filters {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
 }

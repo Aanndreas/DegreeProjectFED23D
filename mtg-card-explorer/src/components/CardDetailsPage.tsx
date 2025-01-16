@@ -8,7 +8,11 @@ interface CardData {
   image_uris?: { normal: string };
   mana_cost: string;
   type_line: string;
+  rarity?: string;
   oracle_text?: string;
+  flavor_text?: string;
+  set_name?: string;
+  artist?: string;
 }
 
 const CardDetailsPage = () => {
@@ -41,24 +45,40 @@ const CardDetailsPage = () => {
   if (!card) return <p>No card found.</p>;
 
   return (
-    <div className="card-details">
+    <div className="card-details-wrapper">
       <button
         className="btn-back-to-main"
         onClick={() => (window.location.href = "/")}
       >
         Back to main page
       </button>
-      <h2>{card.name}</h2>
-      <img src={card.image_uris?.normal} alt={card.name} />
-      <p>
-        <strong>Mana Cost:</strong> {card.mana_cost || "N/A"}
-      </p>
-      <p>
-        <strong>Type:</strong> {card.type_line}
-      </p>
-      <p>
-        <strong>Oracle Text:</strong> {card.oracle_text || "No text available"}
-      </p>
+      <div className="card-details-img-and-text">
+        <img src={card.image_uris?.normal} alt={card.name} />
+        <div className="card-details-page-info-text">
+          <h2>{card.name}</h2>
+          <p>
+            <strong>Mana Cost:</strong> {card.mana_cost || "N/A"}
+          </p>
+          <p>
+            <strong>Type:</strong> {card.type_line}
+          </p>
+          <p>
+            <strong>Rarity:</strong> {card.rarity || "N/A"}
+          </p>
+          <p>
+            <strong>Oracle Text:</strong>{" "}
+            {card.oracle_text || "No text available"}
+          </p>
+          <strong>Flavor Text:</strong>{" "}
+          {card.flavor_text || "No flavor text available"}
+          <p>
+            <strong>Set Name:</strong> {card.set_name || "N/A"}
+          </p>
+          <p>
+            <strong>Artist:</strong> {card.artist || "N/A"}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
