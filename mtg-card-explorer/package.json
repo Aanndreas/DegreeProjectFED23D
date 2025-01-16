@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "npm install @esbuild/linux-x64 --platform=linux --arch=x64"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",

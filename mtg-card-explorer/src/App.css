@@ -91,7 +91,7 @@ select:focus {
 @media (min-width: 601px) {
   .card-image:hover {
     transform: scale(1.5);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
   }
 }
 
