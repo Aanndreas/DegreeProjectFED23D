@@ -85,13 +85,13 @@ select:focus {
   background-color: #f0f0f0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
 }
 
 /* Hover effect for desktop */
 @media (min-width: 601px) {
   .card-image:hover {
     transform: scale(1.5);
+    transition: transform 0.2s ease-in-out;
   }
 }
 
