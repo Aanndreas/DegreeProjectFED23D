@@ -6,7 +6,7 @@ import CardList from "../CardList";
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-// Mockdata för tester
+// Mockdata for tests
 const mockCards = [
   {
     id: "1",
