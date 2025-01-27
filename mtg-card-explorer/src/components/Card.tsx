@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useFavorites from "../hooks/useFavorites";
 
 interface CardProps {
   card: {
@@ -12,32 +13,13 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ card }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
   const [isEnlarged, setIsEnlarged] = useState(false);
-
-  // Load favorites from localStorage
-  useEffect(() => {
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]"
-    );
-    setIsFavorite(storedFavorites.some((fav: any) => fav.id === card.id));
-  }, [card.id]);
+  const { isFavorite, toggleFavorite } = useFavorites(card.id);
 
   // Toggle favorite status
-  const toggleFavorite = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation(); // Prevent card click from triggering enlarge
-    let storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
-    if (isFavorite) {
-      storedFavorites = storedFavorites.filter(
-        (fav: any) => fav.id !== card.id
-      );
-    } else {
-      storedFavorites.push(card);
-    }
-
-    localStorage.setItem("favorites", JSON.stringify(storedFavorites));
-    setIsFavorite(!isFavorite);
+  const handleFavoriteToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    toggleFavorite(card);
   };
 
   const toggleEnlarge = () => {
@@ -81,7 +63,7 @@ const Card: React.FC<CardProps> = ({ card }) => {
         {/* Favorite button */}
         <button
           className={`favorite-button ${isFavorite ? "favorited" : ""}`}
-          onClick={toggleFavorite}
+          onClick={handleFavoriteToggle}
         >
           {isFavorite ? "★ Favorited" : "☆ Add to Favorites"}
         </button>

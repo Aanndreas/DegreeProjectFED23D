@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import useFavorites from "../hooks/useFavorites";
 
 interface CardData {
   id: string;
@@ -20,7 +21,8 @@ const CardDetailsPage = () => {
   const [card, setCard] = useState<CardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isFavorite, setIsFavorite] = useState(false);
+
+  const { isFavorite, toggleFavorite } = useFavorites(id);
 
   useEffect(() => {
     const fetchCard = async () => {
@@ -40,35 +42,6 @@ const CardDetailsPage = () => {
       fetchCard();
     }
   }, [id]);
-
-  // Load favorites from localStorage
-  useEffect(() => {
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]"
-    );
-    setIsFavorite(
-      card ? storedFavorites.some((fav: any) => fav.id === card.id) : false
-    );
-  }, [card ? card.id : null]);
-
-  const toggleFavorite = () => {
-    if (!card) return;
-
-    let storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
-    setIsFavorite(storedFavorites.some((fav: any) => fav.id === id));
-
-    if (isFavorite) {
-      storedFavorites = storedFavorites.filter(
-        (fav: any) => fav.id !== card.id
-      );
-    } else {
-      storedFavorites.push(card);
-    }
-
-    localStorage.setItem("favorites", JSON.stringify(storedFavorites));
-    setIsFavorite(!isFavorite);
-  };
 
   if (loading) return <p>Loading card details...</p>;
   if (error) return <p>{error}</p>;
@@ -109,7 +82,7 @@ const CardDetailsPage = () => {
           </p>
           <button
             className={`favorite-button ${isFavorite ? "favorited" : ""}`}
-            onClick={toggleFavorite}
+            onClick={() => toggleFavorite(card!)}
           >
             {isFavorite ? "★ Favorited" : "☆ Add to Favorites"}
           </button>
