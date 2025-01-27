@@ -31,8 +31,8 @@ const CardList: React.FC<CardListProps> = ({ filters }) => {
     const fetchCards = async () => {
       setLoading(true);
       try {
-        const apiUrl = `${(globalThis as any).importMeta.env.VITE_API_URL}/cards/search?q=cmc>0&page=1`; // <-- This is the test suite code
-        // const apiUrl = `${import.meta.env.VITE_API_URL}/cards/search?q=cmc>0&page=1`; // <-- This is the production code
+        // const apiUrl = `${(globalThis as any).importMeta.env.VITE_API_URL}/cards/search?q=cmc>0&page=1`; // <-- This is the test suite code
+        const apiUrl = `${import.meta.env.VITE_API_URL}/cards/search?q=cmc>0&page=1`; // <-- This is the production code
         const response = await axios.get(apiUrl, {
           headers: {
             Accept: "application/json",
