@@ -49,12 +49,6 @@ const CardDetailsPage = () => {
 
   return (
     <div className="card-details-wrapper">
-      <button
-        className="btn-back-to-main"
-        onClick={() => (window.location.href = "/")}
-      >
-        Back to main page
-      </button>
       <div className="card-details-img-and-text">
         <img src={card.image_uris?.normal} alt={card.name} />
         <div className="card-details-page-info-text">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useFavorites from "../hooks/useFavorites";
 
 interface CardProps {
@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ card }) => {
     } else {
       // Desktop: open in a new tab
       const url = `/card/${card.id}`;
-      window.open(url, "_blank");
+      window.location.href = url;
     }
   };
 
