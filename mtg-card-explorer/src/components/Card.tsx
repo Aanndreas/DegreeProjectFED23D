@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useFavorites from "../hooks/useFavorites";
+import SEO from "./SEO";
 
 interface CardProps {
   card: {
@@ -35,6 +36,14 @@ const Card: React.FC<CardProps> = ({ card }) => {
 
   return (
     <>
+      <SEO
+        title="MTG Card Explorer - Gathering Magic in Magic: The Gathering"
+        description={
+          card.oracle_text ||
+          "Discover this Magic: The Gathering card and its details."
+        }
+        image={card.image_uris?.normal || "https://via.placeholder.com/200x278"}
+      />
       {/* Overlay when enlarged - outside card div to cover whole screen */}
       {isEnlarged && (
         <div className="overlay" onClick={() => setIsEnlarged(false)}></div>
