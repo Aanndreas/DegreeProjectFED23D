@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import CardList from "../components/CardList";
 
@@ -20,6 +20,24 @@ const HomePage: React.FC<HomePageProps> = ({
   handleFilterChange,
   handleResetFilters,
 }) => {
+  const [isResetting, setIsResetting] = useState(false);
+
+  const areFiltersActive =
+    filters.searchTerm !== "" ||
+    filters.color !== "" ||
+    filters.type !== "" ||
+    filters.manaCost !== "";
+
+  const handleResetClick = () => {
+    console.log("Resetting filters...");
+
+    setIsResetting(true);
+    setTimeout(() => {
+      handleResetFilters();
+      setIsResetting(false);
+    }, 300);
+  };
+
   return (
     <>
       <h1>Gathering Magic in Magic: The Gathering</h1>
@@ -65,9 +83,16 @@ const HomePage: React.FC<HomePageProps> = ({
           <option value="10">10</option>
         </select>
       </div>
-      <button className="btn-reset-filter" onClick={handleResetFilters}>
-        Reset Filters
-      </button>
+
+      {/*Show reset button if filters are active*/}
+      {areFiltersActive && (
+        <button
+          className={`btn-reset ${isResetting ? "is-resetting" : ""}`}
+          onClick={handleResetClick}
+        >
+          Reset
+        </button>
+      )}
       <CardList filters={filters} />
     </>
   );
