@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
+import SEO from "../components/SEO";
 
 const FavoritesPage: React.FC = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
@@ -26,22 +27,29 @@ const FavoritesPage: React.FC = () => {
   }
 
   return (
-    <div className="favorites-container">
-      <h1>Your Favorite Cards</h1>
-      <div className="card-grid">
-        {favorites.map((card) => (
-          <div key={card.id} className="favorite-card">
-            <Card card={card} />
-            <button
-              className="btn-remove-favorite"
-              onClick={() => removeFavorite(card.id)}
-            >
-              Remove
-            </button>
-          </div>
-        ))}
+    <>
+      <SEO
+        title="MTG Card Explorer - Favorite Cards"
+        description="Explore your favorite Magic: The Gathering cards."
+        image="/default-image.png"
+      />
+      <div className="favorites-container">
+        <h1>Your Favorite Cards</h1>
+        <div className="card-grid">
+          {favorites.map((card) => (
+            <div key={card.id} className="favorite-card">
+              <Card card={card} />
+              <button
+                className="btn-remove-favorite"
+                onClick={() => removeFavorite(card.id)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

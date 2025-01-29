@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import CardList from "../components/CardList";
+import SEO from "../components/SEO";
 
 interface HomePageProps {
   filters: {
@@ -40,6 +41,11 @@ const HomePage: React.FC<HomePageProps> = ({
 
   return (
     <>
+      <SEO
+        title="MTG Card Explorer - Find and Filter Magic: The Gathering Cards"
+        description="Explore and search Magic: The Gathering cards. Filter by color, type, and mana cost to find your favorite cards."
+        keywords="Magic the Gathering, MTG, card search, deck builder, card explorer"
+      />
       <h1>Gathering Magic in Magic: The Gathering</h1>
       <SearchBar onSearch={handleSearch} />
       <div className="filters">
