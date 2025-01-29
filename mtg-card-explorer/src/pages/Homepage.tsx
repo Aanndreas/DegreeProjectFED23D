@@ -11,12 +11,14 @@ interface HomePageProps {
   };
   handleSearch: (term: string) => void;
   handleFilterChange: (filterName: string, value: string) => void;
+  handleResetFilters: () => void;
 }
 
 const HomePage: React.FC<HomePageProps> = ({
   filters,
   handleSearch,
   handleFilterChange,
+  handleResetFilters,
 }) => {
   return (
     <>
@@ -63,6 +65,9 @@ const HomePage: React.FC<HomePageProps> = ({
           <option value="10">10</option>
         </select>
       </div>
+      <button className="btn-reset-filter" onClick={handleResetFilters}>
+        Reset Filters
+      </button>
       <CardList filters={filters} />
     </>
   );

@@ -22,6 +22,15 @@ function App() {
     setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
   };
 
+  const handleResetFilters = () => {
+    setFilters({
+      searchTerm: "",
+      color: "",
+      type: "",
+      manaCost: "",
+    });
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -34,6 +43,7 @@ function App() {
               filters={filters}
               handleSearch={handleSearch}
               handleFilterChange={handleFilterChange}
+              handleResetFilters={handleResetFilters}
             />
           ),
         },
