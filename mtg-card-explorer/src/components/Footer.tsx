@@ -24,7 +24,7 @@ const Footer = () => {
               <Link to="/favorites">Favorites</Link>
             </li>
             <li>
-              <Link to="/about">About Us</Link>
+              <Link to="/about-us">About Us</Link>
             </li>
             <li>
               <Link to="/contact">Contact</Link>
@@ -47,7 +47,15 @@ const Footer = () => {
           <h3>Follow Us</h3>
           <div className="social-icons">
             <a
-              href="https://facebook.com"
+              href="https://deckanddraft.odoo.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Web Store (SE)
+            </a>{" "}
+            |
+            <a
+              href="https://www.facebook.com/profile.php?id=61568785420078"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -55,19 +63,11 @@ const Footer = () => {
             </a>{" "}
             |
             <a
-              href="https://twitter.com"
+              href="https://www.tiktok.com/@deckanddraft?lang=sv-SE"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Twitter
-            </a>{" "}
-            |
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram
+              TikTok
             </a>
           </div>
         </div>

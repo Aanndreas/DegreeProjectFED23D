@@ -428,3 +428,23 @@ select:focus {
     color: #ffcc00;
   }
 }
+.about-us-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.about-section {
+  margin-bottom: 30px;
+}
+
+.about-section h2 {
+  color: #8b0000;
+}
+
+.about-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}

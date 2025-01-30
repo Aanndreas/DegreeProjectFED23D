@@ -22,6 +22,14 @@ const Nav = () => {
             Favorites
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/about-us"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            About Us
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

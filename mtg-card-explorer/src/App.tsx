@@ -6,6 +6,7 @@ import HomePage from "./pages/Homepage";
 import CardDetailsPage from "./pages/CardDetailsPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import IntegrityPolicy from "./pages/IntegrityPolicy";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   const [filters, setFilters] = useState({
@@ -59,6 +60,10 @@ function App() {
         {
           path: "/integrity-policy",
           element: <IntegrityPolicy />,
+        },
+        {
+          path: "/about-us",
+          element: <AboutUs />,
         },
       ],
     },
