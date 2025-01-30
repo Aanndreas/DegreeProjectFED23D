@@ -1,14 +1,16 @@
+import { ReactNode } from "react";
 import Nav from "../components/Nav";
-import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const Layout = () => {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Nav />
-      <main>
-        <Outlet />
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   );

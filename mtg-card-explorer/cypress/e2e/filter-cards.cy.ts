@@ -1,6 +1,6 @@
 describe("Filter Cards by Color", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:5173/home");
   });
 
   it("should filter cards by selected color", () => {

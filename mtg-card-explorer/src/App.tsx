@@ -2,6 +2,7 @@ import "./styles/App.css";
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./layouts/Layout";
+import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/Homepage";
 import CardDetailsPage from "./pages/CardDetailsPage";
 import FavoritesPage from "./pages/FavoritesPage";
@@ -36,36 +37,52 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
-      children: [
-        {
-          index: true,
-          element: (
-            <HomePage
-              filters={filters}
-              handleSearch={handleSearch}
-              handleFilterChange={handleFilterChange}
-              handleResetFilters={handleResetFilters}
-            />
-          ),
-        },
-        {
-          path: "/card/:id",
-          element: <CardDetailsPage />,
-        },
-        {
-          path: "/favorites",
-          element: <FavoritesPage />,
-        },
-        {
-          path: "/integrity-policy",
-          element: <IntegrityPolicy />,
-        },
-        {
-          path: "/about-us",
-          element: <AboutUs />,
-        },
-      ],
+      element: <LandingPage />,
+    },
+    {
+      path: "/home",
+      element: (
+        <Layout>
+          <HomePage
+            filters={filters}
+            handleSearch={handleSearch}
+            handleFilterChange={handleFilterChange}
+            handleResetFilters={handleResetFilters}
+          />
+        </Layout>
+      ),
+    },
+    {
+      path: "/card/:id",
+      element: (
+        <Layout>
+          <CardDetailsPage />
+        </Layout>
+      ),
+    },
+    {
+      path: "/favorites",
+      element: (
+        <Layout>
+          <FavoritesPage />
+        </Layout>
+      ),
+    },
+    {
+      path: "/integrity-policy",
+      element: (
+        <Layout>
+          <IntegrityPolicy />
+        </Layout>
+      ),
+    },
+    {
+      path: "/about-us",
+      element: (
+        <Layout>
+          <AboutUs />
+        </Layout>
+      ),
     },
   ]);
 

@@ -1,6 +1,6 @@
 describe("Remove a Favorite Card", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:5173/home");
 
     // Add a card to favorites
     cy.get("[data-testid^='favorite-button-']").first().click();

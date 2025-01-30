@@ -1,7 +1,7 @@
 describe("MTG Card Explorer - Favorites Functionality", () => {
   it("allows a user to favorite a card and see it in the favorites page", () => {
     // Go to homepage
-    cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:5173/home");
 
     // Enter "Aarakocra Sneak" in search bar and press enter
     cy.get("[data-testid='search-bar']").type("Aarakocra Sneak{enter}");
