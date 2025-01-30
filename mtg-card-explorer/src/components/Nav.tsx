@@ -8,6 +8,7 @@ const Nav = () => {
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "active-link" : "")}
+            data-testid="home-link"
           >
             Home
           </NavLink>
@@ -16,6 +17,7 @@ const Nav = () => {
           <NavLink
             to="/favorites"
             className={({ isActive }) => (isActive ? "active-link" : "")}
+            data-testid="favorites-link"
           >
             Favorites
           </NavLink>

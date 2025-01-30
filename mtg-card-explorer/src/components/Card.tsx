@@ -73,6 +73,7 @@ const Card: React.FC<CardProps> = ({ card }) => {
         <button
           className={`favorite-button ${isFavorite ? "favorited" : ""}`}
           onClick={handleFavoriteToggle}
+          data-testid={`favorite-button-${card.name}`}
         >
           {isFavorite ? "★ Favorited" : "☆ Add to Favorites"}
         </button>
