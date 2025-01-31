@@ -451,7 +451,7 @@ select:focus {
 
 .landing-container {
   text-align: center;
-  padding: 50px 20px;
+  padding: 20px;
   background-color: #1b1b1b;
   color: #ffffff;
   background-image: url("/public/LandingPageBackground.webp");
